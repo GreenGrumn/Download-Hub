@@ -125,6 +125,25 @@
       color: var(--muted);
       font-size: 0.85rem;
     }
+
+    /* ===== SEARCH ===== */
+    #search {
+      margin-top: 1.25rem;
+      width: 100%;
+      max-width: 420px;
+      padding: 0.75rem 1rem;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+      background: var(--card);
+      color: var(--text);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+      font-size: 0.95rem;
+    }
+
+    #search::placeholder {
+      color: var(--muted);
+    }
   </style>
 </head>
 <body>
@@ -136,6 +155,8 @@
         Download Hub
       </h1>
       <p class="subtitle">Official downloads hosted directly from this site.</p>
+
+      <input id="search" type="text" placeholder="Search downloads..." />
     </header>
 
     <section class="downloads">
@@ -174,6 +195,25 @@
       © 2026 Download Hub
     </footer>
 
+  
+    <footer>
+      © 2026 Download Hub
+    </footer>
+
   </main>
+
+  <script>
+    const searchInput = document.getElementById('search');
+    const cards = document.querySelectorAll('.card');
+
+    searchInput.addEventListener('input', () => {
+      const value = searchInput.value.toLowerCase();
+
+      cards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        card.style.display = text.includes(value) ? 'block' : 'none';
+      });
+    });
+  </script>
 </body>
 </html>
